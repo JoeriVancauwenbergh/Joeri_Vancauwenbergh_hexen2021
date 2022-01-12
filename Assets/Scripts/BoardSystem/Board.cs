@@ -6,16 +6,19 @@ namespace BoardSystem
 {
     public class Board<TPosition>
     {
-        // Start is called before the first frame update
-        void Start()
+        public void MoveTo(IPiece<TPosition> piece, TPosition position)
         {
+            //...
 
+            piece.OnMoved(position);
         }
 
-        // Update is called once per frame
-        void Update()
+        public void Take(IPiece<TPosition> piece)
         {
+            //...
 
+            piece.OnTaken();
         }
+
     }
 }
