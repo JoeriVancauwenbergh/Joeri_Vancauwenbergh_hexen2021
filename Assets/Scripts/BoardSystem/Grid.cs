@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DAE.Commons;
-using System;
 
 namespace BoardSystem
 {
@@ -29,6 +28,8 @@ namespace BoardSystem
             _positions.Add(position, (x, y));
             //DebugGrid(_positions);
         }
+
+        // DEBUG /////////////////////////////////////////////////////////////////////////////////////////////////
         internal void DebugGrid(BidirectionalDictionary<TPosition, (float x, float y)> positions)
         {
             foreach (KeyValuePair<TPosition, (float x, float y)> kvp in positions)
