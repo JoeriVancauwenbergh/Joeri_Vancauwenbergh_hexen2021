@@ -22,7 +22,14 @@ namespace CardSystem
             for(int count = 0; count < amountInHandCards; count++)
             {
                 _deck[count].SetActive(true);
+                var card = _deck[count];
+                _hand.Add(card);
             }
+        }
+
+        public void RemoveFromHand(TCard card, TPosition position)
+        {
+
         }
 
         // DEBUG /////////////////////////////////////////////////////////////////////////////////////////////////

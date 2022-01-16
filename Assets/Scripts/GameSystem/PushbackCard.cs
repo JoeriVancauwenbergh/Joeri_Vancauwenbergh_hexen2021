@@ -7,15 +7,23 @@ namespace GameSystem
 {
     public class PushbackCard : MonoBehaviour, ICard<Tile>
     {
-        [SerializeField]
-        private Configuration _configuration;
-
         public void SetActive(bool active)
-            => gameObject.SetActive(active);
+        {
+            gameObject.SetActive(active);
+        }
 
-        public void Execute(Tile cardPosition)
+        public void SelectedCard()
         {
 
+        }
+
+        public List<Tile> Positions(Tile atPosition)
+        {
+            return null;
+        }
+
+        public void Execute(Tile atPosition)
+        {
 
         }
     }

@@ -4,13 +4,14 @@ using UnityEngine;
 
 namespace CardSystem
 {
-    public interface ICard<TPostion>
+    public interface ICard<TPosition>
     {
         public void SetActive(bool active);
 
-        //public void SelectedCard();
-        //public void Position(TPiece, TPosition);
+        public void SelectedCard();
 
-        public void Execute(TPostion cardPosition);
+        public List<TPosition> Positions (TPosition atPosition);
+
+        public void Execute(TPosition atPosition);
     }
 }

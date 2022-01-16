@@ -13,6 +13,9 @@ namespace CardSystem
         private RectTransform _draggingPlane;
         private bool _isDraggingOnSurfaces = true;
 
+        [SerializeField]
+        GameObject Card;
+
         void Start()
         {
             _canvas = FindObjectOfType<Canvas>();
@@ -68,8 +71,12 @@ namespace CardSystem
         public void OnEndDrag(PointerEventData eventData)
         {
             if (_draggingIcon != null)
+            {
                 Destroy(_draggingIcon);
+                Card.gameObject.SetActive(false);
+            }
         }
+
         public void OnDrop(PointerEventData eventData)
         {
             if (eventData.pointerDrag != null)

@@ -112,6 +112,17 @@ namespace GameSystem
             //DebugDeck();
         }
 
+     /*   private void EmptyDeck()
+        {
+            _deck.RemoveFromHand(_swipeCard);
+
+        }*/
+
+
+
+
+
+
         // DEBUG /////////////////////////////////////////////////////////////////////////////////////////////////
         internal void DebugTile(Tile tile)
         {

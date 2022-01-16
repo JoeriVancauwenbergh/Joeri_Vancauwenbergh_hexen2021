@@ -20,6 +20,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2053516389077178760, guid: ab99bb302dcae20428932643ef9c60fe, type: 3}
+      propertyPath: Card
+      value: 
+      objectReference: {fileID: 6779107894204458971}
+    - target: {fileID: 2053516389077178760, guid: ab99bb302dcae20428932643ef9c60fe, type: 3}
+      propertyPath: test
+      value: 
+      objectReference: {fileID: 6779107894204458971}
+    - target: {fileID: 2053516389077178760, guid: ab99bb302dcae20428932643ef9c60fe, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}

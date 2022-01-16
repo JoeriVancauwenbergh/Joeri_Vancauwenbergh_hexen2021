@@ -15,6 +15,14 @@ PrefabInstance:
       propertyPath: _originalMaterial
       value: 
       objectReference: {fileID: 2100000, guid: 4816a54cc9b17d24e84d447f30e9030e, type: 2}
+    - target: {fileID: 1329987637368407366, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
+      propertyPath: _originalMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 4816a54cc9b17d24e84d447f30e9030e, type: 2}
+    - target: {fileID: 1329987637368407366, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
+      propertyPath: OnDeactivate.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
+      value: 
+      objectReference: {fileID: 2100000, guid: 4816a54cc9b17d24e84d447f30e9030e, type: 2}
     - target: {fileID: 1658963367149765667, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
       propertyPath: m_Name
       value: TileDarkPink
