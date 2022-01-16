@@ -19,9 +19,26 @@ namespace BoardSystem
         }
     }
 
+    public class PieceMovedEventArgs<TPiece, TPosition>
+    {
+        public TPiece Piece { get; }
+
+        public TPosition FromPosition { get; }
+
+        public TPosition ToPosition { get; }
+
+        public PieceMovedEventArgs(TPiece piece, TPosition fromPosition, TPosition toPosition)
+        {
+            Piece = piece;
+            FromPosition = fromPosition;
+            ToPosition = toPosition;
+        }
+    }
+
     public class Board<TPiece, TPosition>
     {
         public event EventHandler<PiecePlacedEventArgs<TPiece, TPosition>> PiecePlaced;
+        public event EventHandler<PieceMovedEventArgs<TPiece, TPosition>> PieceMoved;
 
         private BidirectionalDictionary<TPiece, TPosition> _pieces
             = new BidirectionalDictionary<TPiece, TPosition>();
@@ -46,11 +63,20 @@ namespace BoardSystem
             //DebugBoard(_pieces);
         }
 
-        public void MoveTo(IPiece<TPosition> piece, TPosition position)
+        public void MoveTo(TPiece piece, TPosition toPosition)
         {
-            //...
+            if (!TryGetPosition(piece, out var fromPosition))
+                return;
 
-            piece.OnMoved(position);
+            if (TryGetPiece(toPosition, out _))
+                return;
+
+            if (!_pieces.Remove(piece))
+                return;
+
+            _pieces.Add(piece, toPosition);
+
+            OnPieceMoved(new PieceMovedEventArgs<TPiece, TPosition>(piece, fromPosition, toPosition));
         }
 
         public void Take(IPiece<TPosition> piece)
@@ -63,6 +89,12 @@ namespace BoardSystem
         protected virtual void OnPiecePlaced(PiecePlacedEventArgs<TPiece, TPosition> eventArgs)
         {
             var handler = PiecePlaced;
+            handler?.Invoke(this, eventArgs);
+        }
+
+        protected virtual void OnPieceMoved(PieceMovedEventArgs<TPiece, TPosition> eventArgs)
+        {
+            var handler = PieceMoved;
             handler?.Invoke(this, eventArgs);
         }
 

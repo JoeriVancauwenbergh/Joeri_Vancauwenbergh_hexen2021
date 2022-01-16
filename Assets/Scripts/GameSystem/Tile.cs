@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 
@@ -12,9 +12,6 @@ namespace GameSystem
         [SerializeField]
         private UnityEvent OnDeactivate;
 
-        public void OnPointerClick(PointerEventData eventData)
-            =>FindObjectOfType<GameLoop>().DebugTile(this);
-
         public bool Highlight
         {
             set
@@ -25,5 +22,8 @@ namespace GameSystem
                     OnDeactivate.Invoke();
             }
         }
+
+        public void OnPointerClick(PointerEventData eventData)
+            => FindObjectOfType<GameLoop>().DebugTile(this);
     }
 }

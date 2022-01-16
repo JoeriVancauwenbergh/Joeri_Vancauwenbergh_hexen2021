@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 3461378677854167461}
   - component: {fileID: 74122408530431873}
   - component: {fileID: 8374053398985611441}
-  m_Layer: 0
-  m_Name: Pawn
+  m_Layer: 3
+  m_Name: PawnBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -70,7 +70,7 @@ GameObject:
   - component: {fileID: 8092038533224102548}
   - component: {fileID: 5790242112621899837}
   - component: {fileID: 7754600462681860916}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}

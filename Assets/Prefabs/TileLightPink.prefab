@@ -7,6 +7,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 81486044198379623, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
+      propertyPath: _meshRenderer
+      value: 
+      objectReference: {fileID: 2659980521074678712}
+    - target: {fileID: 81486044198379623, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
+      propertyPath: _originalMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: ae9677b6838efb943861e4e68e9aa3a6, type: 2}
     - target: {fileID: 1658963367149765667, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
       propertyPath: m_Name
       value: TileLightPink
@@ -61,3 +69,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
+--- !u!23 &2659980521074678712 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8567502251294694148, guid: 96c019e82ed43364f81950df596d71f1, type: 3}
+  m_PrefabInstance: {fileID: 5913164564020248764}
+  m_PrefabAsset: {fileID: 0}

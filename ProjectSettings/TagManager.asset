@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Enemy
   - Tile
+  - Canvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Pawn
   - Water
   - UI
   - 
