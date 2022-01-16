@@ -1,7 +1,7 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DAE.Commons;
+using System.Linq;
 
 namespace BoardSystem
 {
@@ -13,9 +13,7 @@ namespace BoardSystem
         public int Radius { get; }
 
         public Grid(int radius)
-        {
-            Radius = radius;
-        }
+            => Radius = radius;
 
         public bool TryGetPositionAt(float x, float y, out TPosition position)
            => _positions.TryGetKey((x, y), out position);
@@ -26,6 +24,7 @@ namespace BoardSystem
         public void Register(TPosition position, float x, float y)
         {
             _positions.Add(position, (x, y));
+
             //DebugGrid(_positions);
         }
 
@@ -35,5 +34,8 @@ namespace BoardSystem
             foreach (KeyValuePair<TPosition, (float x, float y)> kvp in positions)
                 Debug.Log("GridPosition -> Key = " + kvp.Key + " Value = " + kvp.Value);
         }
+
+        public List<TPosition> GetTiles()
+             => _positions.Keys.ToList();
     }
 }

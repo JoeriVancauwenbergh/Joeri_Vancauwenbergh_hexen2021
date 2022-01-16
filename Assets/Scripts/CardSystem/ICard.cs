@@ -1,17 +1,14 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using BoardSystem;
 
 namespace CardSystem
 {
-    public interface ICard<TPosition>
+    public interface ICard<TPiece, TPosition>
     {
-        public void SetActive(bool active);
+        void Initialize(Board<TPiece, TPosition> board, Grid<TPosition> grid);
 
-        public void SelectedCard();
+        bool Execute(TPiece piece, TPosition position);
 
-        public List<TPosition> Positions (TPosition atPosition);
-
-        public void Execute(TPosition atPosition);
+        List<TPosition> Positions(TPiece piece, TPosition position);
     }
 }

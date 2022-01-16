@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: Configuration
   m_EditorClassIdentifier: 
   TileDimension: 3
-  Player: {fileID: 6651586834261365107, guid: 0a7853a15d54f6c47829fad091eb2ed3, type: 3}
-  Enemy: {fileID: 715789276394657764, guid: 4707c637949329b4bae793f22f6327d6, type: 3}
+  Player: {fileID: 4284158830411786067, guid: 0a7853a15d54f6c47829fad091eb2ed3, type: 3}
+  Enemy: {fileID: 7986487099909333444, guid: 4707c637949329b4bae793f22f6327d6, type: 3}
   BoardRadius: 3
   DeckSize: 12
   AmountCardTypes: 4
@@ -22,4 +22,4 @@ MonoBehaviour:
   PushbackCard: {fileID: 5359223457958846306, guid: 16e5f3eda7d791e49ab3868b3c8e48ec, type: 3}
   SlashCard: {fileID: 1149210258431647863, guid: e82e25b5307ca2742a32e1d066b6616e, type: 3}
   SwipeCard: {fileID: 3762949263294234041, guid: 1b560aea669c98e4799bd0f433563308, type: 3}
-  TeleportCard: {fileID: 6985844073175838555, guid: 29078a4b8392f2e4b901339074cefb6a, type: 3}
+  TeleportCard: {fileID: 9218605944871974818, guid: 29078a4b8392f2e4b901339074cefb6a, type: 3}

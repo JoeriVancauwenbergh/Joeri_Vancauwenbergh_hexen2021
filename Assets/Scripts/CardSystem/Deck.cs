@@ -1,42 +1,73 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using BoardSystem;
 
 namespace CardSystem
 {
-    public class Deck<TCard, TPosition>
-        where TCard : ICard<TPosition>
+    public class CardEventArgs<TCard> : EventArgs
     {
-        private List<TCard> _deck = new List<TCard>();
-        private List<TCard> _hand = new List<TCard>();
-        private bool _isInHand;
+        public TCard Card { get; }
 
-        public void FillDeck(TCard card)
+        public CardEventArgs(TCard card)
         {
-            card.SetActive(false);
-            _deck.Add(card);
+            Card = card;
+        }
+    }
+
+    public class Deck<TCard, TPiece, TPosition>
+        where TCard : MonoBehaviour, ICard<TPiece, TPosition>
+    {
+        public event EventHandler<CardEventArgs<TCard>> CardPlayed;
+
+        private Board<TPiece, TPosition> _board;
+        private Grid<TPosition> _grid;
+
+        private List<TCard> _cards = new List<TCard>();
+        private int _amountInHandCards;
+
+        public Deck(Board<TPiece, TPosition> board, Grid<TPosition> grid)
+        {
+            _board = board;
+            _grid = grid;
+        }
+
+        public void Register(TCard card)
+        {
+            _cards.Add(card);
+            card.Initialize(_board, _grid);
         }
 
         public void FillHand(int amountInHandCards)
         {
-            for(int count = 0; count < amountInHandCards; count++)
+            int activeCards = 0;
+            _amountInHandCards = amountInHandCards;
+
+            foreach (TCard card in _cards)
             {
-                _deck[count].SetActive(true);
-                var card = _deck[count];
-                _hand.Add(card);
+                if (activeCards == amountInHandCards)
+                    break;
+
+                if (!card.gameObject.activeInHierarchy)
+                    card.gameObject.SetActive(true);
+
+                activeCards++;
             }
         }
 
-        public void RemoveFromHand(TCard card, TPosition position)
+        public void PlayCard(TCard card, TPiece piece, TPosition position)
         {
-
+            if (card.Execute(piece, position))
+            {
+                _cards.Remove(card);
+                FillHand(_amountInHandCards);
+            }
         }
 
-        // DEBUG /////////////////////////////////////////////////////////////////////////////////////////////////
-        public void DebugDeck()
+        public void OnCardPlayed(CardEventArgs<TCard> eventArgs)
         {
-            foreach (TCard card in _deck)
-                Debug.Log(card);
+            EventHandler<CardEventArgs<TCard>> handler = CardPlayed;
+            handler?.Invoke(this, eventArgs);
         }
     }
 }

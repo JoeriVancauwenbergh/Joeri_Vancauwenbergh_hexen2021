@@ -6,26 +6,8 @@ using UnityEngine.EventSystems;
 
 namespace GameSystem
 {
-    public class SlashCard : MonoBehaviour, ICard<Tile>
+    public class SlashCard : BaseCard<Pawn<Tile>, Tile>
     {
-        public void SetActive(bool active)
-        {
-            gameObject.SetActive(active);
-        }
 
-        public void SelectedCard()
-        {
-
-        }
-
-        public List<Tile> Positions (Tile atPosition)
-        {
-            return null;
-        }
-
-        public void Execute(Tile atPosition)
-        {
-
-        }
     }
 }

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using BoardSystem;
 
@@ -9,8 +7,7 @@ namespace GameSystem
 
     public class PositionHelper : ScriptableObject
     {
-        [SerializeField]
-        private Configuration _configuration;
+        [SerializeField] private Configuration _configuration;
 
         private float _tileDimension;
         private float _offsetFactor = 0.875f;

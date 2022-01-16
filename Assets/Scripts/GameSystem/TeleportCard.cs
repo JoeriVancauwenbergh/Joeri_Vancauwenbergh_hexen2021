@@ -1,47 +1,38 @@
-using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using CardSystem;
-using BoardSystem;
+using System.Linq;
 
 namespace GameSystem
 {
-    public class TeleportCard : MonoBehaviour, ICard<Tile>
-    {
-        [SerializeField]
-        private Configuration _configuration;
+	public class TeleportCard : BaseCard<Pawn<Tile>, Tile>
+	{
+		public override List<Tile> Positions(Pawn<Tile> pawn, Tile tile)
+		{
+			List<Tile> tiles = _grid.GetTiles()
+				.Where(tile => _board.TryGetPiece(tile, out _) == false)
+				.ToList();
 
-        public Board<Pawn, Tile> Board { get; set; }
-        public Grid<Tile> Grid { get; set; }
+			if (tiles.Contains(tile))
+			{
+				_validTiles = new List<Tile> { tile };
+			}
+			else
+			{
+				_validTiles = new List<Tile>();
+			}
 
-        public void SetActive(bool active)
-        {
-            gameObject.SetActive(active);
-        }
+			return _validTiles;
+		}
 
-        public void SelectedCard()
-        {
+		public override bool Execute(Pawn<Tile> pawn, Tile tile)
+		{
+			if (!_validTiles.Contains(tile)) return false;
 
-        }
+			_board.Move(pawn, tile);
 
-        public List<Tile> Positions(Tile atPosition)
-        {
-            List<Tile> positions = new List<Tile>();
-            
-            if (!Board.TryGetPosition(_configuration.Player, out var playerPosition)
-                && !Board.TryGetPosition(_configuration.Enemy, out var enemyPosition))
-            {
-                positions.Add(atPosition);
+			base.Execute(pawn, tile);
 
-                Debug.Log(atPosition);
-            }
-
-            return positions;
-        }
-
-        public void Execute(Tile atPosition)
-        {
-
-        }
-    }
+			return true;
+		}
+	}
 }

@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5041735804866574033}
   - component: {fileID: 5041735804866574035}
   - component: {fileID: 5041735804866574034}
-  - component: {fileID: 2053516389077178760}
   m_Layer: 5
   m_Name: CardBase
   m_TagString: Untagged
@@ -76,15 +75,3 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &2053516389077178760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5041735804866574032}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11776c43260d35d45bc212fa50ca6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

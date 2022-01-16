@@ -1,7 +1,9 @@
 {
     "name": "CardSystem",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:b60abdebcd1c0924392d8ca028374461"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,

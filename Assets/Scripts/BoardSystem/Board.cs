@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
@@ -35,10 +34,23 @@ namespace BoardSystem
         }
     }
 
+    public class PieceTakenEventArgs<TPiece, TPosition> : EventArgs
+    {
+        public TPosition FromTile { get; }
+        public TPiece Piece { get; }
+
+        public PieceTakenEventArgs(TPiece piece, TPosition fromTile)
+        {
+            FromTile = fromTile;
+            Piece = piece;
+        }
+    }
+
     public class Board<TPiece, TPosition>
     {
         public event EventHandler<PiecePlacedEventArgs<TPiece, TPosition>> PiecePlaced;
         public event EventHandler<PieceMovedEventArgs<TPiece, TPosition>> PieceMoved;
+        public event EventHandler<PieceTakenEventArgs<TPiece, TPosition>> PieceTaken;
 
         private BidirectionalDictionary<TPiece, TPosition> _pieces
             = new BidirectionalDictionary<TPiece, TPosition>();
@@ -63,7 +75,7 @@ namespace BoardSystem
             //DebugBoard(_pieces);
         }
 
-        public void MoveTo(TPiece piece, TPosition toPosition)
+        public void Move(TPiece piece, TPosition toPosition)
         {
             if (!TryGetPosition(piece, out var fromPosition))
                 return;
@@ -79,11 +91,13 @@ namespace BoardSystem
             OnPieceMoved(new PieceMovedEventArgs<TPiece, TPosition>(piece, fromPosition, toPosition));
         }
 
-        public void Take(IPiece<TPosition> piece)
+        public void Take(TPiece piece)
         {
-            //...
+            if (!TryGetPosition(piece, out TPosition fromPosition))
+                return;
 
-            piece.OnTaken();
+            if (_pieces.Remove(piece))
+                OnPieceTaken(new PieceTakenEventArgs<TPiece, TPosition>(piece, fromPosition));
         }
 
         protected virtual void OnPiecePlaced(PiecePlacedEventArgs<TPiece, TPosition> eventArgs)
@@ -98,6 +112,11 @@ namespace BoardSystem
             handler?.Invoke(this, eventArgs);
         }
 
+        protected virtual void OnPieceTaken(PieceTakenEventArgs<TPiece, TPosition> eventArgs)
+        {
+            EventHandler<PieceTakenEventArgs<TPiece, TPosition>> handler = PieceTaken;
+            handler?.Invoke(this, eventArgs);
+        }
 
         // DEBUG /////////////////////////////////////////////////////////////////////////////////////////////////
         internal void DebugBoard(BidirectionalDictionary<TPiece, TPosition> pieces)
